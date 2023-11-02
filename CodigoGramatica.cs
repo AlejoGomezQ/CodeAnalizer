@@ -182,6 +182,12 @@ namespace com.calitha.goldparser
     public class MyParser
     {
         private LALRParser parser;
+        public static String cadena;
+
+        public String getCadena()
+        {
+            return cadena;
+        }
 
         public MyParser(string filename)
         {
@@ -215,6 +221,10 @@ namespace com.calitha.goldparser
             parser = reader.CreateNewParser();
             parser.TrimReductions = false;
             parser.StoreTokens = LALRParser.StoreTokensMode.NoUserObject;
+
+            parser.OnReduce += new LALRParser.ReduceHandler(ReduceEvent);
+            parser.OnTokenRead += new LALRParser.TokenReadHandler(TokenReadEvent);
+            parser.OnAccept += new LALRParser.AcceptHandler(AcceptEvent);
 
             parser.OnTokenError += new LALRParser.TokenErrorHandler(TokenErrorEvent);
             parser.OnParseError += new LALRParser.ParseErrorHandler(ParseErrorEvent);
@@ -872,6 +882,35 @@ namespace com.calitha.goldparser
 
             }
             throw new RuleException("Unknown rule");
+        }
+
+        private void ReduceEvent(LALRParser parser, ReduceEventArgs args)
+        {
+            try
+            {
+                args.Token.UserObject = CreateObject(args.Token);
+            }
+            catch (Exception e)
+            {
+                args.Continue = false;
+            }
+        }
+
+        private void TokenReadEvent(LALRParser parser, TokenReadEventArgs args)
+        {
+            try
+            {
+                args.Token.UserObject = CreateObject(args.Token);
+            } 
+            catch (Exception e)
+            {
+                args.Continue = false;
+            }
+        }
+
+        private void AcceptEvent(LALRParser parser, AcceptEventArgs args)
+        {
+            System.Windows.Forms.MessageBox.Show("El código ha sido analizado correctamente");
         }
 
         private void TokenErrorEvent(LALRParser parser, TokenErrorEventArgs args)

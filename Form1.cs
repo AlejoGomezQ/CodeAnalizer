@@ -13,6 +13,10 @@ namespace CodeAnalizer
         {
             //Instancia un objeto de la clase MyPArser y le envia la ruta del archivo de tablas
             MyParser analizador = new MyParser(Application.StartupPath + "\\GramaticaFinal.cgt");
+
+            analizador.Parse(richTextBox1.Text);
+
+            richTextBox2.Text = analizador.getCadena();
         }
     }
 }
