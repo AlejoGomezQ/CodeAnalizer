@@ -1,0 +1,9 @@
+principal {
+    int a;
+    int b;
+    suma(a, b);
+}
+
+void imprimir() {
+    println(a);
+}

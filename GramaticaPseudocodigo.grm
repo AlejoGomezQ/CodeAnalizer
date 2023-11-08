@@ -1,0 +1,49 @@
+﻿! Welcome to GOLD Parser Builder 5.2
+
+!VT Símbolos terminales
+
+! id = { Var9, Resultado, A, cad1, ...}
+id={Letter}{Alphanumeric}* 
+
+! enteroPositivo = { 5, 4, 6 ,8, 4567, 2386, 45678  }   
+enteroPositivo={Digit}+
+
+! enteroNegativo = { -5, -4, -6 , -8, -4567, -2386, -45678  }              
+enteroNegativo='-'{Digit}+
+              
+! realPositivo = { 5.3, 4.5, 6.7 , 8.8, 45.777, 2.386, 45.678  }
+realPositivo={Digit}+'.'{Digit}*
+            
+! realNegativo = { -5.3, -4.5, -6.7 , -8.8, -45.777, -2.386, -45.678  }
+realNegativo='-'{Digit}+'.'{Digit}*
+
+! AXIOMA
+"START SYMBOL"= <Programa> 
+
+<Programa>::= Principal '{'<ListaDeclaraciones> <ListaSentencias>'}'| Principal '{'<ListaDeclaraciones> <ListaSentencias>'}'<ListaFunciones>| Principal '{'<ListaDeclaraciones> <ListaSentencias>'}'<ListaProcedimientos> | Principal '{'<ListaDeclaraciones> <ListaSentencias>'}'<ListaFunciones><ListaProcedimientos> | Principal '{'<ListaDeclaraciones> <ListaSentencias>'}'<ListaProcedimientos><ListaFunciones>
+<ListaDeclaraciones>::= <ListaDeclaracionesP>
+<ListaDeclaracionesP>::= <Declaracion> <ListaDeclaracionesP> | !nothing
+<Declaracion>::= <TipoDato> <id> ';' | <TipoDato> <id> '=' <Expresion> ';'                    
+<ListaFunciones>::= <ListaFunciones><Funcion> | <Funcion> 
+<ListaSentencias> ::= <ListaSentencias><Sentencia> | <Sentencia>
+<ListaProcedimientos>::= <ListaProcedimientos><Procedimiento> | <Procedimiento>
+<Funcion>::= <TipoDato><id>'('<ListaParametros>')''{'<ListaSentencias> retorno<Expresion>';''}'| void <id>'('<ListaParametros>')''{'<ListaSentencias>'}'                     
+<Procedimiento>::=  void <id> '('')''{'<ListaSentencias>'}'               
+<Sentencia>::= <SentenciaAsignacion>| <SentenciaFor>| <SentenciaWhile>| <SentenciaDoWhile>| <SentenciaIf> |<LlamadaFuncion>
+<SentenciaAsignacion>::= <id>'='<Expresion>';'
+<SentenciaFor>::= for '('<SentenciaAsignacion><Condicion>';'<Incremento>')''{'<ListaSentencias>'}'
+<Incremento> ::= id '+''+'               
+<SentenciaWhile>::= while '('<Condicion>')' '{'<ListaSentencias>'}'
+<SentenciaDoWhile>::= do'{'<ListaSentencias>'}' while'('<Condicion>')'
+<SentenciaIf>::= if '('<Condicion>')' '{'<ListaSentencias>'}' | if '('<Condicion>')' '{'<ListaSentencias>'}'else'{'<ListaSentencias>'}'
+<LlamadaFuncion>::= <id>'('<ListaExpresiones>')'';'
+<TipoDato>::= int | char | string | double | float | long | boolean
+<ListaParametros>::= <ListaParametros> ',' <TipoDato><id>|<TipoDato><id>
+<ListaExpresiones>::=<ListaExpresiones>','<Expresion>|<Expresion>
+<Expresion>::= <Expresion>'+'<Termino>|<Expresion>'-'<Termino>|<Termino>
+<Termino>::= <Termino>'*'<Factor>   |<Termino>'/'<Factor>|<Factor>
+<Factor>::='('<Expresion>')'|<id>
+<Condicion>::= <Condicion>'&''&'<CondicionSimple>|<Condicion>'|''|'<CondicionSimple>|<CondicionSimple>
+<CondicionSimple>::= <Expresion>'<'<Expresion>   |<Expresion>'>'<Expresion>   |<Expresion>'<''='<Expresion>|<Expresion>'>''='<Expresion>|<Expresion>'=''='<Expresion>|'('<Condicion>')'|True|False
+<id>::= num | id
+

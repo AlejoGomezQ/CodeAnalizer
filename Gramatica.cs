@@ -92,96 +92,105 @@ namespace com.calitha.goldparser
         SYMBOL_WHILE               = 40, // while
         SYMBOL_CONDICION           = 41, // <Condicion>
         SYMBOL_CONDICIONSIMPLE     = 42, // <CondicionSimple>
-        SYMBOL_EXPRESION           = 43, // <Expresion>
-        SYMBOL_FACTOR              = 44, // <Factor>
-        SYMBOL_FUNCION             = 45, // <Funcion>
-        SYMBOL_ID2                 = 46, // <id>
-        SYMBOL_INCREMENTO          = 47, // <Incremento>
-        SYMBOL_LISTAEXPRESIONES    = 48, // <ListaExpresiones>
-        SYMBOL_LISTAFUNCIONES      = 49, // <ListaFunciones>
-        SYMBOL_LISTAPARAMETROS     = 50, // <ListaParametros>
-        SYMBOL_LISTAPROCEDIMIENTOS = 51, // <ListaProcedimientos>
-        SYMBOL_LISTASENTENCIAS     = 52, // <ListaSentencias>
-        SYMBOL_LLAMADAFUNCION      = 53, // <LlamadaFuncion>
-        SYMBOL_PROCEDIMIENTO       = 54, // <Procedimiento>
-        SYMBOL_PROGRAMA            = 55, // <Programa>
-        SYMBOL_SENTENCIA           = 56, // <Sentencia>
-        SYMBOL_SENTENCIAASIGNACION = 57, // <SentenciaAsignacion>
-        SYMBOL_SENTENCIADOWHILE    = 58, // <SentenciaDoWhile>
-        SYMBOL_SENTENCIAFOR        = 59, // <SentenciaFor>
-        SYMBOL_SENTENCIAIF         = 60, // <SentenciaIf>
-        SYMBOL_SENTENCIAWHILE      = 61, // <SentenciaWhile>
-        SYMBOL_TERMINO             = 62, // <Termino>
-        SYMBOL_TIPODATO            = 63  // <TipoDato>
+        SYMBOL_DECLARACION         = 43, // <Declaracion>
+        SYMBOL_EXPRESION           = 44, // <Expresion>
+        SYMBOL_FACTOR              = 45, // <Factor>
+        SYMBOL_FUNCION             = 46, // <Funcion>
+        SYMBOL_ID2                 = 47, // <id>
+        SYMBOL_INCREMENTO          = 48, // <Incremento>
+        SYMBOL_LISTADECLARACIONES  = 49, // <ListaDeclaraciones>
+        SYMBOL_LISTADECLARACIONESP = 50, // <ListaDeclaracionesP>
+        SYMBOL_LISTAEXPRESIONES    = 51, // <ListaExpresiones>
+        SYMBOL_LISTAFUNCIONES      = 52, // <ListaFunciones>
+        SYMBOL_LISTAPARAMETROS     = 53, // <ListaParametros>
+        SYMBOL_LISTAPROCEDIMIENTOS = 54, // <ListaProcedimientos>
+        SYMBOL_LISTASENTENCIAS     = 55, // <ListaSentencias>
+        SYMBOL_LLAMADAFUNCION      = 56, // <LlamadaFuncion>
+        SYMBOL_PROCEDIMIENTO       = 57, // <Procedimiento>
+        SYMBOL_PROGRAMA            = 58, // <Programa>
+        SYMBOL_SENTENCIA           = 59, // <Sentencia>
+        SYMBOL_SENTENCIAASIGNACION = 60, // <SentenciaAsignacion>
+        SYMBOL_SENTENCIADOWHILE    = 61, // <SentenciaDoWhile>
+        SYMBOL_SENTENCIAFOR        = 62, // <SentenciaFor>
+        SYMBOL_SENTENCIAIF         = 63, // <SentenciaIf>
+        SYMBOL_SENTENCIAWHILE      = 64, // <SentenciaWhile>
+        SYMBOL_TERMINO             = 65, // <Termino>
+        SYMBOL_TIPODATO            = 66  // <TipoDato>
     };
 
     enum RuleConstants : int
     {
-        RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE                              =  0, // <Programa> ::= Principal '{' <ListaSentencias> '}'
-        RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE2                             =  1, // <Programa> ::= Principal '{' <ListaSentencias> '}' <ListaFunciones>
-        RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE3                             =  2, // <Programa> ::= Principal '{' <ListaSentencias> '}' <ListaProcedimientos>
-        RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE4                             =  3, // <Programa> ::= Principal '{' <ListaSentencias> '}' <ListaFunciones> <ListaProcedimientos>
-        RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE5                             =  4, // <Programa> ::= Principal '{' <ListaSentencias> '}' <ListaProcedimientos> <ListaFunciones>
-        RULE_LISTAFUNCIONES                                                =  5, // <ListaFunciones> ::= <ListaFunciones> <Funcion>
-        RULE_LISTAFUNCIONES2                                               =  6, // <ListaFunciones> ::= <Funcion>
-        RULE_LISTASENTENCIAS                                               =  7, // <ListaSentencias> ::= <ListaSentencias> <Sentencia>
-        RULE_LISTASENTENCIAS2                                              =  8, // <ListaSentencias> ::= <Sentencia>
-        RULE_LISTAPROCEDIMIENTOS                                           =  9, // <ListaProcedimientos> ::= <ListaProcedimientos> <Procedimiento>
-        RULE_LISTAPROCEDIMIENTOS2                                          = 10, // <ListaProcedimientos> ::= <Procedimiento>
-        RULE_FUNCION_LPAREN_RPAREN_LBRACE_RETORNO_SEMI_RBRACE              = 11, // <Funcion> ::= <TipoDato> <id> '(' <ListaParametros> ')' '{' <ListaSentencias> retorno <Expresion> ';' '}'
-        RULE_FUNCION_VOID_LPAREN_RPAREN_LBRACE_RBRACE                      = 12, // <Funcion> ::= void <id> '(' <ListaParametros> ')' '{' <ListaSentencias> '}'
-        RULE_PROCEDIMIENTO_VOID_LPAREN_RPAREN_LBRACE_RBRACE                = 13, // <Procedimiento> ::= void <id> '(' ')' '{' <ListaSentencias> '}'
-        RULE_SENTENCIA                                                     = 14, // <Sentencia> ::= <SentenciaAsignacion>
-        RULE_SENTENCIA2                                                    = 15, // <Sentencia> ::= <SentenciaFor>
-        RULE_SENTENCIA3                                                    = 16, // <Sentencia> ::= <SentenciaWhile>
-        RULE_SENTENCIA4                                                    = 17, // <Sentencia> ::= <SentenciaDoWhile>
-        RULE_SENTENCIA5                                                    = 18, // <Sentencia> ::= <SentenciaIf>
-        RULE_SENTENCIA6                                                    = 19, // <Sentencia> ::= <LlamadaFuncion>
-        RULE_SENTENCIAASIGNACION_EQ_SEMI                                   = 20, // <SentenciaAsignacion> ::= <id> '=' <Expresion> ';'
-        RULE_SENTENCIAFOR_FOR_LPAREN_SEMI_RPAREN_LBRACE_RBRACE             = 21, // <SentenciaFor> ::= for '(' <SentenciaAsignacion> <Condicion> ';' <Incremento> ')' '{' <ListaSentencias> '}'
-        RULE_INCREMENTO_ID_PLUS_PLUS                                       = 22, // <Incremento> ::= id '+' '+'
-        RULE_SENTENCIAWHILE_WHILE_LPAREN_RPAREN_LBRACE_RBRACE              = 23, // <SentenciaWhile> ::= while '(' <Condicion> ')' '{' <ListaSentencias> '}'
-        RULE_SENTENCIADOWHILE_DO_LBRACE_RBRACE_WHILE_LPAREN_RPAREN         = 24, // <SentenciaDoWhile> ::= do '{' <ListaSentencias> '}' while '(' <Condicion> ')'
-        RULE_SENTENCIAIF_IF_LPAREN_RPAREN_LBRACE_RBRACE                    = 25, // <SentenciaIf> ::= if '(' <Condicion> ')' '{' <ListaSentencias> '}'
-        RULE_SENTENCIAIF_IF_LPAREN_RPAREN_LBRACE_RBRACE_ELSE_LBRACE_RBRACE = 26, // <SentenciaIf> ::= if '(' <Condicion> ')' '{' <ListaSentencias> '}' else '{' <ListaSentencias> '}'
-        RULE_LLAMADAFUNCION_LPAREN_RPAREN_SEMI                             = 27, // <LlamadaFuncion> ::= <id> '(' <ListaExpresiones> ')' ';'
-        RULE_TIPODATO_INT                                                  = 28, // <TipoDato> ::= int
-        RULE_TIPODATO_CHAR                                                 = 29, // <TipoDato> ::= char
-        RULE_TIPODATO_STRING                                               = 30, // <TipoDato> ::= string
-        RULE_TIPODATO_DOUBLE                                               = 31, // <TipoDato> ::= double
-        RULE_TIPODATO_FLOAT                                                = 32, // <TipoDato> ::= float
-        RULE_TIPODATO_LONG                                                 = 33, // <TipoDato> ::= long
-        RULE_TIPODATO_BOOLEAN                                              = 34, // <TipoDato> ::= boolean
-        RULE_LISTAPARAMETROS_COMMA                                         = 35, // <ListaParametros> ::= <ListaParametros> ',' <TipoDato> <id>
-        RULE_LISTAPARAMETROS                                               = 36, // <ListaParametros> ::= <TipoDato> <id>
-        RULE_LISTAEXPRESIONES_COMMA                                        = 37, // <ListaExpresiones> ::= <ListaExpresiones> ',' <Expresion>
-        RULE_LISTAEXPRESIONES                                              = 38, // <ListaExpresiones> ::= <Expresion>
-        RULE_EXPRESION_PLUS                                                = 39, // <Expresion> ::= <Expresion> '+' <Termino>
-        RULE_EXPRESION_MINUS                                               = 40, // <Expresion> ::= <Expresion> '-' <Termino>
-        RULE_EXPRESION                                                     = 41, // <Expresion> ::= <Termino>
-        RULE_TERMINO_TIMES                                                 = 42, // <Termino> ::= <Termino> '*' <Factor>
-        RULE_TERMINO_DIV                                                   = 43, // <Termino> ::= <Termino> '/' <Factor>
-        RULE_TERMINO                                                       = 44, // <Termino> ::= <Factor>
-        RULE_FACTOR_LPAREN_RPAREN                                          = 45, // <Factor> ::= '(' <Expresion> ')'
-        RULE_FACTOR                                                        = 46, // <Factor> ::= <id>
-        RULE_CONDICION_AMP_AMP                                             = 47, // <Condicion> ::= <Condicion> '&' '&' <CondicionSimple>
-        RULE_CONDICION_PIPE_PIPE                                           = 48, // <Condicion> ::= <Condicion> '|' '|' <CondicionSimple>
-        RULE_CONDICION                                                     = 49, // <Condicion> ::= <CondicionSimple>
-        RULE_CONDICIONSIMPLE_LT                                            = 50, // <CondicionSimple> ::= <Expresion> '<' <Expresion>
-        RULE_CONDICIONSIMPLE_GT                                            = 51, // <CondicionSimple> ::= <Expresion> '>' <Expresion>
-        RULE_CONDICIONSIMPLE_LT_EQ                                         = 52, // <CondicionSimple> ::= <Expresion> '<' '=' <Expresion>
-        RULE_CONDICIONSIMPLE_GT_EQ                                         = 53, // <CondicionSimple> ::= <Expresion> '>' '=' <Expresion>
-        RULE_CONDICIONSIMPLE_EQ_EQ                                         = 54, // <CondicionSimple> ::= <Expresion> '=' '=' <Expresion>
-        RULE_CONDICIONSIMPLE_LPAREN_RPAREN                                 = 55, // <CondicionSimple> ::= '(' <Condicion> ')'
-        RULE_CONDICIONSIMPLE_TRUE                                          = 56, // <CondicionSimple> ::= True
-        RULE_CONDICIONSIMPLE_FALSE                                         = 57, // <CondicionSimple> ::= False
-        RULE_ID_NUM                                                        = 58, // <id> ::= num
-        RULE_ID_ID                                                         = 59  // <id> ::= id
+        RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE                              =  0, // <Programa> ::= Principal '{' <ListaDeclaraciones> <ListaSentencias> '}'
+        RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE2                             =  1, // <Programa> ::= Principal '{' <ListaDeclaraciones> <ListaSentencias> '}' <ListaFunciones>
+        RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE3                             =  2, // <Programa> ::= Principal '{' <ListaDeclaraciones> <ListaSentencias> '}' <ListaProcedimientos>
+        RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE4                             =  3, // <Programa> ::= Principal '{' <ListaDeclaraciones> <ListaSentencias> '}' <ListaFunciones> <ListaProcedimientos>
+        RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE5                             =  4, // <Programa> ::= Principal '{' <ListaDeclaraciones> <ListaSentencias> '}' <ListaProcedimientos> <ListaFunciones>
+        RULE_LISTADECLARACIONES                                            =  5, // <ListaDeclaraciones> ::= <ListaDeclaracionesP>
+        RULE_LISTADECLARACIONESP                                           =  6, // <ListaDeclaracionesP> ::= <Declaracion> <ListaDeclaracionesP>
+        RULE_LISTADECLARACIONESP2                                          =  7, // <ListaDeclaracionesP> ::= 
+        RULE_DECLARACION_SEMI                                              =  8, // <Declaracion> ::= <TipoDato> <id> ';'
+        RULE_DECLARACION_EQ_SEMI                                           =  9, // <Declaracion> ::= <TipoDato> <id> '=' <Expresion> ';'
+        RULE_LISTAFUNCIONES                                                = 10, // <ListaFunciones> ::= <ListaFunciones> <Funcion>
+        RULE_LISTAFUNCIONES2                                               = 11, // <ListaFunciones> ::= <Funcion>
+        RULE_LISTASENTENCIAS                                               = 12, // <ListaSentencias> ::= <ListaSentencias> <Sentencia>
+        RULE_LISTASENTENCIAS2                                              = 13, // <ListaSentencias> ::= <Sentencia>
+        RULE_LISTAPROCEDIMIENTOS                                           = 14, // <ListaProcedimientos> ::= <ListaProcedimientos> <Procedimiento>
+        RULE_LISTAPROCEDIMIENTOS2                                          = 15, // <ListaProcedimientos> ::= <Procedimiento>
+        RULE_FUNCION_LPAREN_RPAREN_LBRACE_RETORNO_SEMI_RBRACE              = 16, // <Funcion> ::= <TipoDato> <id> '(' <ListaParametros> ')' '{' <ListaSentencias> retorno <Expresion> ';' '}'
+        RULE_FUNCION_VOID_LPAREN_RPAREN_LBRACE_RBRACE                      = 17, // <Funcion> ::= void <id> '(' <ListaParametros> ')' '{' <ListaSentencias> '}'
+        RULE_PROCEDIMIENTO_VOID_LPAREN_RPAREN_LBRACE_RBRACE                = 18, // <Procedimiento> ::= void <id> '(' ')' '{' <ListaSentencias> '}'
+        RULE_SENTENCIA                                                     = 19, // <Sentencia> ::= <SentenciaAsignacion>
+        RULE_SENTENCIA2                                                    = 20, // <Sentencia> ::= <SentenciaFor>
+        RULE_SENTENCIA3                                                    = 21, // <Sentencia> ::= <SentenciaWhile>
+        RULE_SENTENCIA4                                                    = 22, // <Sentencia> ::= <SentenciaDoWhile>
+        RULE_SENTENCIA5                                                    = 23, // <Sentencia> ::= <SentenciaIf>
+        RULE_SENTENCIA6                                                    = 24, // <Sentencia> ::= <LlamadaFuncion>
+        RULE_SENTENCIAASIGNACION_EQ_SEMI                                   = 25, // <SentenciaAsignacion> ::= <id> '=' <Expresion> ';'
+        RULE_SENTENCIAFOR_FOR_LPAREN_SEMI_RPAREN_LBRACE_RBRACE             = 26, // <SentenciaFor> ::= for '(' <SentenciaAsignacion> <Condicion> ';' <Incremento> ')' '{' <ListaSentencias> '}'
+        RULE_INCREMENTO_ID_PLUS_PLUS                                       = 27, // <Incremento> ::= id '+' '+'
+        RULE_SENTENCIAWHILE_WHILE_LPAREN_RPAREN_LBRACE_RBRACE              = 28, // <SentenciaWhile> ::= while '(' <Condicion> ')' '{' <ListaSentencias> '}'
+        RULE_SENTENCIADOWHILE_DO_LBRACE_RBRACE_WHILE_LPAREN_RPAREN         = 29, // <SentenciaDoWhile> ::= do '{' <ListaSentencias> '}' while '(' <Condicion> ')'
+        RULE_SENTENCIAIF_IF_LPAREN_RPAREN_LBRACE_RBRACE                    = 30, // <SentenciaIf> ::= if '(' <Condicion> ')' '{' <ListaSentencias> '}'
+        RULE_SENTENCIAIF_IF_LPAREN_RPAREN_LBRACE_RBRACE_ELSE_LBRACE_RBRACE = 31, // <SentenciaIf> ::= if '(' <Condicion> ')' '{' <ListaSentencias> '}' else '{' <ListaSentencias> '}'
+        RULE_LLAMADAFUNCION_LPAREN_RPAREN_SEMI                             = 32, // <LlamadaFuncion> ::= <id> '(' <ListaExpresiones> ')' ';'
+        RULE_TIPODATO_INT                                                  = 33, // <TipoDato> ::= int
+        RULE_TIPODATO_CHAR                                                 = 34, // <TipoDato> ::= char
+        RULE_TIPODATO_STRING                                               = 35, // <TipoDato> ::= string
+        RULE_TIPODATO_DOUBLE                                               = 36, // <TipoDato> ::= double
+        RULE_TIPODATO_FLOAT                                                = 37, // <TipoDato> ::= float
+        RULE_TIPODATO_LONG                                                 = 38, // <TipoDato> ::= long
+        RULE_TIPODATO_BOOLEAN                                              = 39, // <TipoDato> ::= boolean
+        RULE_LISTAPARAMETROS_COMMA                                         = 40, // <ListaParametros> ::= <ListaParametros> ',' <TipoDato> <id>
+        RULE_LISTAPARAMETROS                                               = 41, // <ListaParametros> ::= <TipoDato> <id>
+        RULE_LISTAEXPRESIONES_COMMA                                        = 42, // <ListaExpresiones> ::= <ListaExpresiones> ',' <Expresion>
+        RULE_LISTAEXPRESIONES                                              = 43, // <ListaExpresiones> ::= <Expresion>
+        RULE_EXPRESION_PLUS                                                = 44, // <Expresion> ::= <Expresion> '+' <Termino>
+        RULE_EXPRESION_MINUS                                               = 45, // <Expresion> ::= <Expresion> '-' <Termino>
+        RULE_EXPRESION                                                     = 46, // <Expresion> ::= <Termino>
+        RULE_TERMINO_TIMES                                                 = 47, // <Termino> ::= <Termino> '*' <Factor>
+        RULE_TERMINO_DIV                                                   = 48, // <Termino> ::= <Termino> '/' <Factor>
+        RULE_TERMINO                                                       = 49, // <Termino> ::= <Factor>
+        RULE_FACTOR_LPAREN_RPAREN                                          = 50, // <Factor> ::= '(' <Expresion> ')'
+        RULE_FACTOR                                                        = 51, // <Factor> ::= <id>
+        RULE_CONDICION_AMP_AMP                                             = 52, // <Condicion> ::= <Condicion> '&' '&' <CondicionSimple>
+        RULE_CONDICION_PIPE_PIPE                                           = 53, // <Condicion> ::= <Condicion> '|' '|' <CondicionSimple>
+        RULE_CONDICION                                                     = 54, // <Condicion> ::= <CondicionSimple>
+        RULE_CONDICIONSIMPLE_LT                                            = 55, // <CondicionSimple> ::= <Expresion> '<' <Expresion>
+        RULE_CONDICIONSIMPLE_GT                                            = 56, // <CondicionSimple> ::= <Expresion> '>' <Expresion>
+        RULE_CONDICIONSIMPLE_LT_EQ                                         = 57, // <CondicionSimple> ::= <Expresion> '<' '=' <Expresion>
+        RULE_CONDICIONSIMPLE_GT_EQ                                         = 58, // <CondicionSimple> ::= <Expresion> '>' '=' <Expresion>
+        RULE_CONDICIONSIMPLE_EQ_EQ                                         = 59, // <CondicionSimple> ::= <Expresion> '=' '=' <Expresion>
+        RULE_CONDICIONSIMPLE_LPAREN_RPAREN                                 = 60, // <CondicionSimple> ::= '(' <Condicion> ')'
+        RULE_CONDICIONSIMPLE_TRUE                                          = 61, // <CondicionSimple> ::= True
+        RULE_CONDICIONSIMPLE_FALSE                                         = 62, // <CondicionSimple> ::= False
+        RULE_ID_NUM                                                        = 63, // <id> ::= num
+        RULE_ID_ID                                                         = 64  // <id> ::= id
     };
 
     public class MyParser
     {
         private LALRParser parser;
+
         public static String cadena;
 
         public String getCadena()
@@ -221,10 +230,6 @@ namespace com.calitha.goldparser
             parser = reader.CreateNewParser();
             parser.TrimReductions = false;
             parser.StoreTokens = LALRParser.StoreTokensMode.NoUserObject;
-
-            parser.OnReduce += new LALRParser.ReduceHandler(ReduceEvent);
-            parser.OnTokenRead += new LALRParser.TokenReadHandler(TokenReadEvent);
-            parser.OnAccept += new LALRParser.AcceptHandler(AcceptEvent);
 
             parser.OnTokenError += new LALRParser.TokenErrorHandler(TokenErrorEvent);
             parser.OnParseError += new LALRParser.ParseErrorHandler(ParseErrorEvent);
@@ -467,6 +472,11 @@ namespace com.calitha.goldparser
                 //todo: Create a new object that corresponds to the symbol
                 return null;
 
+                case (int)SymbolConstants.SYMBOL_DECLARACION :
+                //<Declaracion>
+                //todo: Create a new object that corresponds to the symbol
+                return null;
+
                 case (int)SymbolConstants.SYMBOL_EXPRESION :
                 //<Expresion>
                 //todo: Create a new object that corresponds to the symbol
@@ -489,6 +499,16 @@ namespace com.calitha.goldparser
 
                 case (int)SymbolConstants.SYMBOL_INCREMENTO :
                 //<Incremento>
+                //todo: Create a new object that corresponds to the symbol
+                return null;
+
+                case (int)SymbolConstants.SYMBOL_LISTADECLARACIONES :
+                //<ListaDeclaraciones>
+                //todo: Create a new object that corresponds to the symbol
+                return null;
+
+                case (int)SymbolConstants.SYMBOL_LISTADECLARACIONESP :
+                //<ListaDeclaracionesP>
                 //todo: Create a new object that corresponds to the symbol
                 return null;
 
@@ -581,27 +601,52 @@ namespace com.calitha.goldparser
             switch (token.Rule.Id)
             {
                 case (int)RuleConstants.RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE :
-                //<Programa> ::= Principal '{' <ListaSentencias> '}'
+                //<Programa> ::= Principal '{' <ListaDeclaraciones> <ListaSentencias> '}'
                 //todo: Create a new object using the stored tokens.
                 return null;
 
                 case (int)RuleConstants.RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE2 :
-                //<Programa> ::= Principal '{' <ListaSentencias> '}' <ListaFunciones>
+                //<Programa> ::= Principal '{' <ListaDeclaraciones> <ListaSentencias> '}' <ListaFunciones>
                 //todo: Create a new object using the stored tokens.
                 return null;
 
                 case (int)RuleConstants.RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE3 :
-                //<Programa> ::= Principal '{' <ListaSentencias> '}' <ListaProcedimientos>
+                //<Programa> ::= Principal '{' <ListaDeclaraciones> <ListaSentencias> '}' <ListaProcedimientos>
                 //todo: Create a new object using the stored tokens.
                 return null;
 
                 case (int)RuleConstants.RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE4 :
-                //<Programa> ::= Principal '{' <ListaSentencias> '}' <ListaFunciones> <ListaProcedimientos>
+                //<Programa> ::= Principal '{' <ListaDeclaraciones> <ListaSentencias> '}' <ListaFunciones> <ListaProcedimientos>
                 //todo: Create a new object using the stored tokens.
                 return null;
 
                 case (int)RuleConstants.RULE_PROGRAMA_PRINCIPAL_LBRACE_RBRACE5 :
-                //<Programa> ::= Principal '{' <ListaSentencias> '}' <ListaProcedimientos> <ListaFunciones>
+                //<Programa> ::= Principal '{' <ListaDeclaraciones> <ListaSentencias> '}' <ListaProcedimientos> <ListaFunciones>
+                //todo: Create a new object using the stored tokens.
+                return null;
+
+                case (int)RuleConstants.RULE_LISTADECLARACIONES :
+                //<ListaDeclaraciones> ::= <ListaDeclaracionesP>
+                //todo: Create a new object using the stored tokens.
+                return null;
+
+                case (int)RuleConstants.RULE_LISTADECLARACIONESP :
+                //<ListaDeclaracionesP> ::= <Declaracion> <ListaDeclaracionesP>
+                //todo: Create a new object using the stored tokens.
+                return null;
+
+                case (int)RuleConstants.RULE_LISTADECLARACIONESP2 :
+                //<ListaDeclaracionesP> ::= 
+                //todo: Create a new object using the stored tokens.
+                return null;
+
+                case (int)RuleConstants.RULE_DECLARACION_SEMI :
+                //<Declaracion> ::= <TipoDato> <id> ';'
+                //todo: Create a new object using the stored tokens.
+                return null;
+
+                case (int)RuleConstants.RULE_DECLARACION_EQ_SEMI :
+                //<Declaracion> ::= <TipoDato> <id> '=' <Expresion> ';'
                 //todo: Create a new object using the stored tokens.
                 return null;
 
@@ -901,7 +946,7 @@ namespace com.calitha.goldparser
             try
             {
                 args.Token.UserObject = CreateObject(args.Token);
-            } 
+            }
             catch (Exception e)
             {
                 args.Continue = false;

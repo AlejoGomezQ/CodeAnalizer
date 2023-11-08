@@ -1,0 +1,9 @@
+principal {
+    float a;
+    float b;
+    multiplicar(a, b);
+}
+
+void imprimir() {
+    println(a);
+}
