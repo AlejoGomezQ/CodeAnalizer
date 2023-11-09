@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\bin\\Debug",
-    "\\bin\\Debug\\net6.0-windows"
+    ""
   ],
-  "SelectedNode": "\\CodeAnalizer.csproj",
+  "SelectedNode": "\\Form1.Designer.cs",
   "PreviewInSolutionExplorer": false
 }

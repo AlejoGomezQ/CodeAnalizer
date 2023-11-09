@@ -45,5 +45,5 @@ realNegativo='-'{Digit}+'.'{Digit}*
 <Factor>::='('<Expresion>')'|<id>
 <Condicion>::= <Condicion>'&''&'<CondicionSimple>|<Condicion>'|''|'<CondicionSimple>|<CondicionSimple>
 <CondicionSimple>::= <Expresion>'<'<Expresion>   |<Expresion>'>'<Expresion>   |<Expresion>'<''='<Expresion>|<Expresion>'>''='<Expresion>|<Expresion>'=''='<Expresion>|'('<Condicion>')'|True|False
-<id>::= num | id
+<id>::= id | enteroNegativo | enteroPositivo
 

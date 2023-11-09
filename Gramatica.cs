@@ -81,41 +81,40 @@ namespace com.calitha.goldparser
         SYMBOL_IF                  = 29, // if
         SYMBOL_INT                 = 30, // int
         SYMBOL_LONG                = 31, // long
-        SYMBOL_NUM                 = 32, // num
-        SYMBOL_PRINCIPAL           = 33, // Principal
-        SYMBOL_REALNEGATIVO        = 34, // realNegativo
-        SYMBOL_REALPOSITIVO        = 35, // realPositivo
-        SYMBOL_RETORNO             = 36, // retorno
-        SYMBOL_STRING              = 37, // string
-        SYMBOL_TRUE                = 38, // True
-        SYMBOL_VOID                = 39, // void
-        SYMBOL_WHILE               = 40, // while
-        SYMBOL_CONDICION           = 41, // <Condicion>
-        SYMBOL_CONDICIONSIMPLE     = 42, // <CondicionSimple>
-        SYMBOL_DECLARACION         = 43, // <Declaracion>
-        SYMBOL_EXPRESION           = 44, // <Expresion>
-        SYMBOL_FACTOR              = 45, // <Factor>
-        SYMBOL_FUNCION             = 46, // <Funcion>
-        SYMBOL_ID2                 = 47, // <id>
-        SYMBOL_INCREMENTO          = 48, // <Incremento>
-        SYMBOL_LISTADECLARACIONES  = 49, // <ListaDeclaraciones>
-        SYMBOL_LISTADECLARACIONESP = 50, // <ListaDeclaracionesP>
-        SYMBOL_LISTAEXPRESIONES    = 51, // <ListaExpresiones>
-        SYMBOL_LISTAFUNCIONES      = 52, // <ListaFunciones>
-        SYMBOL_LISTAPARAMETROS     = 53, // <ListaParametros>
-        SYMBOL_LISTAPROCEDIMIENTOS = 54, // <ListaProcedimientos>
-        SYMBOL_LISTASENTENCIAS     = 55, // <ListaSentencias>
-        SYMBOL_LLAMADAFUNCION      = 56, // <LlamadaFuncion>
-        SYMBOL_PROCEDIMIENTO       = 57, // <Procedimiento>
-        SYMBOL_PROGRAMA            = 58, // <Programa>
-        SYMBOL_SENTENCIA           = 59, // <Sentencia>
-        SYMBOL_SENTENCIAASIGNACION = 60, // <SentenciaAsignacion>
-        SYMBOL_SENTENCIADOWHILE    = 61, // <SentenciaDoWhile>
-        SYMBOL_SENTENCIAFOR        = 62, // <SentenciaFor>
-        SYMBOL_SENTENCIAIF         = 63, // <SentenciaIf>
-        SYMBOL_SENTENCIAWHILE      = 64, // <SentenciaWhile>
-        SYMBOL_TERMINO             = 65, // <Termino>
-        SYMBOL_TIPODATO            = 66  // <TipoDato>
+        SYMBOL_PRINCIPAL           = 32, // Principal
+        SYMBOL_REALNEGATIVO        = 33, // realNegativo
+        SYMBOL_REALPOSITIVO        = 34, // realPositivo
+        SYMBOL_RETORNO             = 35, // retorno
+        SYMBOL_STRING              = 36, // string
+        SYMBOL_TRUE                = 37, // True
+        SYMBOL_VOID                = 38, // void
+        SYMBOL_WHILE               = 39, // while
+        SYMBOL_CONDICION           = 40, // <Condicion>
+        SYMBOL_CONDICIONSIMPLE     = 41, // <CondicionSimple>
+        SYMBOL_DECLARACION         = 42, // <Declaracion>
+        SYMBOL_EXPRESION           = 43, // <Expresion>
+        SYMBOL_FACTOR              = 44, // <Factor>
+        SYMBOL_FUNCION             = 45, // <Funcion>
+        SYMBOL_ID2                 = 46, // <id>
+        SYMBOL_INCREMENTO          = 47, // <Incremento>
+        SYMBOL_LISTADECLARACIONES  = 48, // <ListaDeclaraciones>
+        SYMBOL_LISTADECLARACIONESP = 49, // <ListaDeclaracionesP>
+        SYMBOL_LISTAEXPRESIONES    = 50, // <ListaExpresiones>
+        SYMBOL_LISTAFUNCIONES      = 51, // <ListaFunciones>
+        SYMBOL_LISTAPARAMETROS     = 52, // <ListaParametros>
+        SYMBOL_LISTAPROCEDIMIENTOS = 53, // <ListaProcedimientos>
+        SYMBOL_LISTASENTENCIAS     = 54, // <ListaSentencias>
+        SYMBOL_LLAMADAFUNCION      = 55, // <LlamadaFuncion>
+        SYMBOL_PROCEDIMIENTO       = 56, // <Procedimiento>
+        SYMBOL_PROGRAMA            = 57, // <Programa>
+        SYMBOL_SENTENCIA           = 58, // <Sentencia>
+        SYMBOL_SENTENCIAASIGNACION = 59, // <SentenciaAsignacion>
+        SYMBOL_SENTENCIADOWHILE    = 60, // <SentenciaDoWhile>
+        SYMBOL_SENTENCIAFOR        = 61, // <SentenciaFor>
+        SYMBOL_SENTENCIAIF         = 62, // <SentenciaIf>
+        SYMBOL_SENTENCIAWHILE      = 63, // <SentenciaWhile>
+        SYMBOL_TERMINO             = 64, // <Termino>
+        SYMBOL_TIPODATO            = 65  // <TipoDato>
     };
 
     enum RuleConstants : int
@@ -183,8 +182,10 @@ namespace com.calitha.goldparser
         RULE_CONDICIONSIMPLE_LPAREN_RPAREN                                 = 60, // <CondicionSimple> ::= '(' <Condicion> ')'
         RULE_CONDICIONSIMPLE_TRUE                                          = 61, // <CondicionSimple> ::= True
         RULE_CONDICIONSIMPLE_FALSE                                         = 62, // <CondicionSimple> ::= False
-        RULE_ID_NUM                                                        = 63, // <id> ::= num
-        RULE_ID_ID                                                         = 64  // <id> ::= id
+        RULE_ID_ID                                                         = 63, // <id> ::= id
+        RULE_ID_ENTERONEGATIVO                                             = 64, // <id> ::= enteroNegativo
+        RULE_ID_ENTEROPOSITIVO                                             = 65, // <id> ::= enteroPositivo
+        RULE_ID_ID_COMMA                                                   = 66  // <id> ::= id ',' <id>
     };
 
     public class MyParser
@@ -230,6 +231,11 @@ namespace com.calitha.goldparser
             parser = reader.CreateNewParser();
             parser.TrimReductions = false;
             parser.StoreTokens = LALRParser.StoreTokensMode.NoUserObject;
+
+            //Código incluido para derivar la cadena actual
+            parser.OnReduce += new LALRParser.ReduceHandler(ReduceEvent);
+            parser.OnTokenRead += new LALRParser.TokenReadHandler(TokenReadEvent);
+            parser.OnAccept += new LALRParser.AcceptHandler(AcceptEvent);
 
             parser.OnTokenError += new LALRParser.TokenErrorHandler(TokenErrorEvent);
             parser.OnParseError += new LALRParser.ParseErrorHandler(ParseErrorEvent);
@@ -414,11 +420,6 @@ namespace com.calitha.goldparser
 
                 case (int)SymbolConstants.SYMBOL_LONG :
                 //long
-                //todo: Create a new object that corresponds to the symbol
-                return null;
-
-                case (int)SymbolConstants.SYMBOL_NUM :
-                //num
                 //todo: Create a new object that corresponds to the symbol
                 return null;
 
@@ -915,13 +916,23 @@ namespace com.calitha.goldparser
                 //todo: Create a new object using the stored tokens.
                 return null;
 
-                case (int)RuleConstants.RULE_ID_NUM :
-                //<id> ::= num
+                case (int)RuleConstants.RULE_ID_ID :
+                //<id> ::= id
                 //todo: Create a new object using the stored tokens.
                 return null;
 
-                case (int)RuleConstants.RULE_ID_ID :
-                //<id> ::= id
+                case (int)RuleConstants.RULE_ID_ENTERONEGATIVO :
+                //<id> ::= enteroNegativo
+                //todo: Create a new object using the stored tokens.
+                return null;
+
+                case (int)RuleConstants.RULE_ID_ENTEROPOSITIVO :
+                //<id> ::= enteroPositivo
+                //todo: Create a new object using the stored tokens.
+                return null;
+
+                case (int)RuleConstants.RULE_ID_ID_COMMA :
+                //<id> ::= id ',' <id>
                 //todo: Create a new object using the stored tokens.
                 return null;
 
@@ -931,6 +942,7 @@ namespace com.calitha.goldparser
 
         private void ReduceEvent(LALRParser parser, ReduceEventArgs args)
         {
+
             try
             {
                 args.Token.UserObject = CreateObject(args.Token);
@@ -943,31 +955,40 @@ namespace com.calitha.goldparser
 
         private void TokenReadEvent(LALRParser parser, TokenReadEventArgs args)
         {
+
             try
             {
                 args.Token.UserObject = CreateObject(args.Token);
             }
+
             catch (Exception e)
+
             {
                 args.Continue = false;
             }
         }
 
         private void AcceptEvent(LALRParser parser, AcceptEventArgs args)
+
         {
-            System.Windows.Forms.MessageBox.Show("El código ha sido analizado correctamente");
+            System.Windows.Forms.MessageBox.Show("El código ha sido analizado correctamente!");
         }
+
 
         private void TokenErrorEvent(LALRParser parser, TokenErrorEventArgs args)
         {
-            string message = "Token error with input: '"+args.Token.ToString()+"'";
+            string message = "\nError Léxico: La cadena no pertenece al lenguaje: '" + args.Token.ToString() + "'";
             //todo: Report message to UI?
+            cadena += message + "\n" + "Linea: " + args.Token.Location.LineNr;
+            args.Continue = true;
         }
 
         private void ParseErrorEvent(LALRParser parser, ParseErrorEventArgs args)
         {
-            string message = "Parse error caused by token: '"+args.UnexpectedToken.ToString()+"'";
+            string message = "\nError Sintáctico: La cadena no se puede derivar:  '" + args.UnexpectedToken.ToString() + "'";
             //todo: Report message to UI?
+
+            cadena += message + "\n" + "Linea: " + args.UnexpectedToken.Location.LineNr;
         }
 
     }
